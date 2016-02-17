@@ -2,6 +2,13 @@ package lab4.gui;
 import java.util.Observable;
 import java.util.Observer;
 
+import javax.swing.Box;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.*;
+import javax.swing.SpringLayout;
+import java.awt.*;
+
 import lab4.client.GomokuClient;
 import lab4.data.GameGrid;
 import lab4.data.GomokuGameState;
@@ -15,6 +22,9 @@ public class GomokuGUI implements Observer{
 	private GomokuClient client;
 	private GomokuGameState gamestate;
 	
+	public static void main(String[] args){
+	}
+	
 	/**
 	 * The constructor
 	 * 
@@ -27,14 +37,13 @@ public class GomokuGUI implements Observer{
 		client.addObserver(this);
 		gamestate.addObserver(this);
 		System.out.println("12345");
-		
-		
 	}
+	
 	
 	
 	public void update(Observable arg0, Object arg1) {
 		
-		// Update the buttons if the connection status has changed
+//		 Update the buttons if the connection status has changed
 		if(arg0 == client){
 			if(client.getConnectionStatus() == GomokuClient.UNCONNECTED){
 				connectButton.setEnabled(true);
@@ -47,7 +56,7 @@ public class GomokuGUI implements Observer{
 			}
 		}
 		
-		// Update the status text if the gamestate has changed
+//		 Update the status text if the gamestate has changed
 		if(arg0 == gamestate){
 			messageLabel.setText(gamestate.getMessageString());
 		}
