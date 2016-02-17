@@ -54,6 +54,9 @@ public class GameGrid extends Observable{
 			return false;
 		} else {
 			squares[x][y] = player;
+			setChanged();
+			notifyObservers();
+			return true;
 		}
 	}
 	
@@ -66,6 +69,8 @@ public class GameGrid extends Observable{
 				square = EMPTY;
 			}
 		}
+		setChanged();
+		notifyObservers();
 	}
 	
 	/**
