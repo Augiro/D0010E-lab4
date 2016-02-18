@@ -60,16 +60,16 @@ public class GamePanel extends JPanel implements Observer{
 		this.setPreferredSize(d);
 		this.setBackground(Color.WHITE);
 		//this should possibly be in GomokuGUI?
-		this.addMouseListener(new MouseAdapter(){
-			public void mouseClicked(MouseEvent e){
-				Point lala=e.getPoint();
-				System.out.println(lala);
-				int[] test=getGridPosition(lala.x,lala.y);
-				int X=test[0];
-				int Y=test[1];
-				System.out.println(grid.move(X, Y, 1));
-			}
-		});
+//		this.addMouseListener(new MouseAdapter(){
+//			public void mouseClicked(MouseEvent e){
+//				Point lala=e.getPoint();
+//				System.out.println(lala);
+//				int[] test=getGridPosition(lala.x,lala.y);
+//				int X=test[0];
+//				int Y=test[1];
+//				System.out.println(grid.move(X, Y, 1));
+//			}
+//		});
 	}
 
 	/**
@@ -113,13 +113,17 @@ public class GamePanel extends JPanel implements Observer{
 	
 	private void drawplayerColumm(Graphics g,int X_pos){
 		for(int i=0;i<grid.getSize();i++){
-//			System.out.println(grid.getLocation(0, i));
+			System.out.println(grid.getLocation(X_pos, i));
 			if(grid.getLocation(X_pos, i)==1){
 				g.setColor(Color.BLACK);
 				g.fillOval(X_pos*UNIT_SIZE, (i*UNIT_SIZE), UNIT_SIZE , UNIT_SIZE);
-			}else if((grid.getLocation(0, i)==2)){
+			}else if((grid.getLocation(X_pos, i)==2)){
 				g.setColor(Color.RED);
 				g.fillOval(X_pos*UNIT_SIZE, (i*UNIT_SIZE), UNIT_SIZE , UNIT_SIZE);
+			}else{
+				g.setColor(Color.WHITE);
+				g.fillOval(X_pos*UNIT_SIZE, (i*UNIT_SIZE), UNIT_SIZE , UNIT_SIZE);
+				
 			}
 		}
 	}
