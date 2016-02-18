@@ -64,11 +64,17 @@ public class GameGrid extends Observable{
 	 * Clears the grid of pieces
 	 */
 	public void clearGrid(){
-		for(int[] column : squares) {
-			for(int square : column) {
-				square = EMPTY;
+		//for(int[] column : squares) {
+		//	for(int square : column) {
+		//		square = EMPTY;
+		//	}
+		//}
+		for(int i=0; i<getSize(); i++) {
+			for(int j=0; j<getSize(); j++) {
+				squares[i][j] = EMPTY;
 			}
 		}
+		System.out.println("Grid cleared.");
 		setChanged();
 		notifyObservers();
 	}
