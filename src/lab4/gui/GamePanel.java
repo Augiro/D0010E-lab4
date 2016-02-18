@@ -28,8 +28,21 @@ public class GamePanel extends JPanel implements Observer{
 		JPanel testpanel=new GamePanel(testgrid);
 		JFrame test=new JFrame();
 		JPanel test2=new JPanel();
+		JButton connectButton=new JButton("Connect");
+		JButton newGameButton=new JButton("New Game");
+		JButton disconnectButton=new JButton("Disconnect");
+		
+		SpringLayout layout=new SpringLayout();
+		testpanel.setLayout(layout);
+		
+		
+		test2.add(disconnectButton);
+		test2.add(connectButton);
+		test2.add(newGameButton);
+		
 		test.setContentPane(test2);
 		test2.add(testpanel);
+		layout.putConstraint(SpringLayout.SOUTH,testpanel,10,SpringLayout.NORTH  ,connectButton);
 		test.pack();
 		test.setVisible(true);
 	}
@@ -77,6 +90,9 @@ public class GamePanel extends JPanel implements Observer{
 	}
 	
 	public void update(Observable arg0, Object arg1) {
+		if(grid.isWinner(2)){
+			grid.clearGrid();
+		};
 		this.repaint();
 	}
 	

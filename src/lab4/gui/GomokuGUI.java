@@ -8,6 +8,8 @@ import javax.swing.JPanel;
 import javax.swing.*;
 import javax.swing.SpringLayout;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import lab4.client.GomokuClient;
 import lab4.data.GameGrid;
@@ -23,6 +25,12 @@ public class GomokuGUI implements Observer{
 	private GomokuGameState gamestate;
 	
 	public static void main(String[] args){
+		GomokuClient testclient=new GomokuClient(4005);
+		GomokuClient testclient2=new GomokuClient(4006);
+		GomokuGameState gamestate=new GomokuGameState(testclient);
+		GomokuGameState gamestate2=new GomokuGameState(testclient2);
+		GomokuGUI testGUI=new GomokuGUI(gamestate,testclient);
+		GomokuGUI testGUI2=new GomokuGUI(gamestate,testclient2);
 	}
 	
 	/**
@@ -36,13 +44,49 @@ public class GomokuGUI implements Observer{
 		this.gamestate = g;
 		client.addObserver(this);
 		gamestate.addObserver(this);
-		System.out.println("12345");
+		
+		JButton connectButton=new JButton("Connect");
+		JButton newGameButton=new JButton("New Game");
+		JButton disconnectButton=new JButton("Disconnect");
+		
+		JLabel messageLabel=new JLabel();
+		
+		GameGrid testgrid=new GameGrid(5);
+		GamePanel testpanel=new GamePanel(testgrid);
+		JFrame test=new JFrame();
+		JPanel test2=new JPanel();
+		
+		
+		test.setContentPane(test2);
+		test2.add(disconnectButton);
+		test2.add(connectButton);
+		test2.add(newGameButton);
+		connectButton.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent arg0) {
+				ConnectionWindow testconnectionwindow=new ConnectionWindow(c);
+				testconnectionwindow.actionPerformed(arg0);
+			}	
+		});
+		disconnectButton.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent arg0) {
+				gamestate.disconnect();
+			}	
+		});
+		newGameButton.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent arg0) {
+				gamestate.newGame();
+			}	
+		});
+		
+		test2.add(messageLabel);
+		test2.add(testpanel);
+		test.pack();
+		test.setVisible(true);
 	}
 	
 	
 	
 	public void update(Observable arg0, Object arg1) {
-		
 //		 Update the buttons if the connection status has changed
 		if(arg0 == client){
 			if(client.getConnectionStatus() == GomokuClient.UNCONNECTED){
