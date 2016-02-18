@@ -122,7 +122,7 @@ public class GameGrid extends Observable{
 		// Diagonally left
 		for(int i=0; i<getSize(); i++) {
 			for(int j=0; j<getSize(); j++) {
-				numInRow = squares[j][j+i] == player ? numInRow+1 : 0;
+				numInRow = squares[j][j] == player ? numInRow+1 : 0;//går ett steg för långt? (plockat bort numInRow = squares[j][j+i] tillfälligt
 				if(numInRow == 5) {
 					return true;
 				}

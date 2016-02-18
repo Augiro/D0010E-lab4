@@ -24,7 +24,7 @@ public class GamePanel extends JPanel implements Observer{
 	private GameGrid grid;
 	
 	public static void main(String[] args){
-		GameGrid testgrid=new GameGrid(9);
+		GameGrid testgrid=new GameGrid(5);
 		JPanel testpanel=new GamePanel(testgrid);
 		JFrame test=new JFrame();
 		JPanel test2=new JPanel();
@@ -90,8 +90,8 @@ public class GamePanel extends JPanel implements Observer{
 	}
 	
 	public void update(Observable arg0, Object arg1) {
-		if(grid.isWinner(2)){
-			grid.clearGrid();
+		if(grid.isWinner(1)){
+			System.out.println("SPELARE 1 VANN");
 		};
 		this.repaint();
 	}
