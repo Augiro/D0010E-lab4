@@ -158,7 +158,7 @@ public class GomokuGameState extends Observable implements Observer{
 	/**
 	 * Executed whenever notified by observers
 	 * @param o The observable object
-	 * @param arg Object for any additional thingies
+	 * @param arg All purpose object
      */
 	public void update(Observable o, Object arg) {
 		switch(client.getConnectionStatus()){

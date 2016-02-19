@@ -58,7 +58,7 @@ public class GamePanel extends JPanel implements Observer {
 	/**
 	 * Executed whenever notified by observable
 	 * @param arg0 The observable
-	 * @param arg1 Object for any additional thingies
+	 * @param arg1 All purpose object
      */
 	public void update(Observable arg0, Object arg1) {
 		this.repaint();

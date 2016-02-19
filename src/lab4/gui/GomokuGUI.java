@@ -79,7 +79,7 @@ public class GomokuGUI implements Observer{
 		layout.putConstraint(SpringLayout.NORTH,disconnectButton,10,SpringLayout.SOUTH , gamepanel);
 		layout.putConstraint(SpringLayout.NORTH,messageLabel,10,SpringLayout.SOUTH , disconnectButton);
 		
-		layout.putConstraint(SpringLayout.EAST,panel,10,SpringLayout.EAST , newGameButton);
+		layout.putConstraint(SpringLayout.EAST,panel,10,SpringLayout.EAST , gamepanel);
 		layout.putConstraint(SpringLayout.SOUTH,panel,10,SpringLayout.SOUTH , messageLabel);
 
 		frame.pack();
@@ -118,7 +118,7 @@ public class GomokuGUI implements Observer{
 	/**
 	 * Executed whenever notified by observables
 	 * @param arg0 Observable object
-	 * @param arg1 Object for any additional thingies
+	 * @param arg1 All purpose object
      */
 	public void update(Observable arg0, Object arg1){
 //		Update the buttons if the connection status has changed
