@@ -93,6 +93,7 @@ public class GomokuGameState extends Observable implements Observer{
 		gameGrid.clearGrid();
 		currentState = OTHERS_TURN;
 		message = "Waiting for other player...";
+		client.sendNewGameMessage();
 		setChanged();
 		notifyObservers();
 	}

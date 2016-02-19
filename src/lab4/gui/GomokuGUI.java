@@ -75,18 +75,19 @@ public class GomokuGUI implements Observer{
 		testframe.setContentPane(testpanel);
 		
 		// SpringLayout testing Starts
-//		SpringLayout layout=new SpringLayout();
-//		testframe.setLayout(layout);
-//
-//		layout.putConstraint(SpringLayout.WEST,connectButton,10,SpringLayout.EAST , disconnectButton);
-//		layout.putConstraint(SpringLayout.WEST,newGameButton,10,SpringLayout.EAST , connectButton);
-//		layout.putConstraint(SpringLayout.NORTH,newGameButton,10,SpringLayout.SOUTH , testGamepanel);
-//		layout.putConstraint(SpringLayout.NORTH,connectButton,10,SpringLayout.SOUTH , testGamepanel);
-//		layout.putConstraint(SpringLayout.NORTH,disconnectButton,10,SpringLayout.SOUTH , testGamepanel);
-//		layout.putConstraint(SpringLayout.NORTH,messageLabel,10,SpringLayout.SOUTH , disconnectButton);
-//		layout.putConstraint(SpringLayout.WEST,messageLabel,10,SpringLayout.WEST , disconnectButton);
-//		layout.putConstraint(SpringLayout.NORTH,testframe,10,SpringLayout.SOUTH , testGamepanel);
-//		layout.putConstraint(SpringLayout.WEST,testframe,10,SpringLayout.EAST , testGamepanel);
+		SpringLayout layout=new SpringLayout();
+		testframe.setLayout(layout);
+
+		layout.putConstraint(SpringLayout.WEST,connectButton,10,SpringLayout.EAST , disconnectButton);
+		layout.putConstraint(SpringLayout.WEST,newGameButton,10,SpringLayout.EAST , connectButton);
+		layout.putConstraint(SpringLayout.NORTH,newGameButton,10,SpringLayout.SOUTH , testGamepanel);
+		layout.putConstraint(SpringLayout.NORTH,connectButton,10,SpringLayout.SOUTH , testGamepanel);
+		layout.putConstraint(SpringLayout.NORTH,disconnectButton,10,SpringLayout.SOUTH , testGamepanel);
+		layout.putConstraint(SpringLayout.NORTH,messageLabel,10,SpringLayout.SOUTH , disconnectButton);
+		layout.putConstraint(SpringLayout.WEST,messageLabel,10,SpringLayout.WEST , disconnectButton);
+		
+		layout.putConstraint(SpringLayout.NORTH,testframe,10,SpringLayout.SOUTH , testGamepanel);
+		layout.putConstraint(SpringLayout.WEST,testframe,10,SpringLayout.EAST , testGamepanel);
 		// SpringLayout testing Ends
 		
 		testframe.pack();
@@ -124,6 +125,10 @@ public class GomokuGUI implements Observer{
 		});
 		
 		testframe.setVisible(true);
+		
+		connectButton.setEnabled(true);
+		newGameButton.setEnabled(false);
+		disconnectButton.setEnabled(false);
 	}
 	
 	
