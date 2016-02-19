@@ -81,6 +81,8 @@ public class GomokuGameState extends Observable implements Observer{
 			} else {
 				message = "You can not make that move!";
 			}
+		} else if(currentState == NOT_STARTED) {
+			message = "Welcome to Gomoku!";
 		}
 		setChanged();
 		notifyObservers();
