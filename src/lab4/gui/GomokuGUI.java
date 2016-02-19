@@ -21,6 +21,9 @@ import lab4.data.GomokuGameState;
  * The GUI class
  */
 
+/**
+ * Creates and manages a GamePanel
+ */
 public class GomokuGUI implements Observer{
 
 	private GomokuClient client;
@@ -29,16 +32,7 @@ public class GomokuGUI implements Observer{
 	private JButton connectButton;
 	private JButton disconnectButton;
 	private JButton newGameButton;
-	
-	public static void main(String[] args){
-		GomokuClient testclient=new GomokuClient(4008);
-		GomokuClient testclient2=new GomokuClient(4007);
-		GomokuGameState gamestate=new GomokuGameState(testclient);
-		GomokuGameState gamestate2=new GomokuGameState(testclient2);
-		GomokuGUI testGUI=new GomokuGUI(gamestate,testclient);
-		GomokuGUI testGUI2=new GomokuGUI(gamestate2,testclient2);
-	}
-	
+
 	/**
 	 * The constructor
 	 * 
@@ -60,9 +54,9 @@ public class GomokuGUI implements Observer{
 		GameGrid grid=g.getGameGrid();
 		GamePanel gamepanel=new GamePanel(grid);
 		
-		JFrame testframe=new JFrame();//fönstret
+		JFrame testframe=new JFrame();//fï¿½nstret
 		testframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		JPanel testpanel=new JPanel();//pane där allt sätts in
+		JPanel testpanel=new JPanel();//pane dï¿½r allt sï¿½tts in
 		
 		testpanel.add(disconnectButton);
 		testpanel.add(connectButton);
@@ -84,19 +78,11 @@ public class GomokuGUI implements Observer{
 		layout.putConstraint(SpringLayout.NORTH,newGameButton,10,SpringLayout.SOUTH , gamepanel);
 		layout.putConstraint(SpringLayout.NORTH,connectButton,10,SpringLayout.SOUTH , gamepanel);
 		layout.putConstraint(SpringLayout.NORTH,disconnectButton,10,SpringLayout.SOUTH , gamepanel);
-//		layout.putConstraint(SpringLayout.NORTH , testpanel,100,SpringLayout.NORTH,newGameButton);
-//		layout.putConstraint(SpringLayout.NORTH , testpanel,100,SpringLayout.NORTH,connectButton);
-//		layout.putConstraint(SpringLayout.NORTH , testpanel,100,SpringLayout.NORTH,disconnectButton);
-		
 		layout.putConstraint(SpringLayout.NORTH,messageLabel,10,SpringLayout.SOUTH , disconnectButton);
 		
 		layout.putConstraint(SpringLayout.EAST,testpanel,10,SpringLayout.EAST , newGameButton);
 		layout.putConstraint(SpringLayout.SOUTH,testpanel,10,SpringLayout.SOUTH , messageLabel);
-		// SpringLayout testing Ends
-		
-		
-//		testframe.setSize(gamepanel.getPreferredSize());
-		
+
 		testframe.pack();
 		
 		connectButton.addActionListener(new ActionListener(){
@@ -139,9 +125,13 @@ public class GomokuGUI implements Observer{
 		
 
 	}
-	
-	
-	
+
+
+	/**
+	 * Executed whenever notified by observables
+	 * @param arg0 Observable object
+	 * @param arg1 Object for any additional thingies
+     */
 	public void update(Observable arg0, Object arg1){
 //		 Update the buttons if the connection status has changed
 		if(arg0 == client){

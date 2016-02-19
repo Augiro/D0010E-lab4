@@ -65,11 +65,6 @@ public class GameGrid extends Observable{
 	 * Clears the grid of pieces
 	 */
 	public void clearGrid(){
-		//for(int[] column : squares) {
-		//	for(int square : column) {
-		//		square = EMPTY;
-		//	}
-		//}
 		for(int i=0; i<getSize(); i++) {
 			for(int j=0; j<getSize(); j++) {
 				squares[i][j] = EMPTY;
@@ -86,18 +81,18 @@ public class GameGrid extends Observable{
 	 * @param player the player to check for
 	 * @return true if player has 5 in row, false otherwise
 	 */
-	public boolean isWinner(int player){
-		if(getSize() < 5) {
+	public boolean isWinner(int player) {
+		if (getSize() < 5) {
 			return false;
 		}
 
 		int numInRow = 0;
 
 		// Check vertically
-		for(int[] column : squares) {
-			for(int square : column) {
-				numInRow = square == player ? numInRow+1 : 0;
-				if(numInRow == INROW) {
+		for (int[] column : squares) {
+			for (int square : column) {
+				numInRow = square == player ? numInRow + 1 : 0;
+				if (numInRow == INROW) {
 					return true;
 				}
 			}
@@ -105,28 +100,17 @@ public class GameGrid extends Observable{
 		}
 
 		// Horizontally
-		for(int i=0; i < getSize(); i++) {
-			for(int y=0; y < getSize(); y++) {
-				numInRow = squares[y][i] == player ? numInRow+1 : 0;
-				if(numInRow == INROW) {
+		for (int i = 0; i < getSize(); i++) {
+			for (int y = 0; y < getSize(); y++) {
+				numInRow = squares[y][i] == player ? numInRow + 1 : 0;
+				if (numInRow == INROW) {
 					return true;
 				}
 			}
 			numInRow = 0;
 		}
 
-		// Diagonally right
-//		for(int i = 4;i < getSize(); i++) {
-//			for(int j=0; j<=i; j++) {
-//				numInRow = squares[j][i-j] == player ? numInRow+1 : 0;
-//				if(numInRow == INROW) {
-//					return true;
-//				}
-//			}
-//			numInRow = 0;
-//		}
-		
-		
+
 		// Diagonally right
 		for (int y = 4; y < getSize(); y++) {
 			for (int x = 0; x < getSize() - 4; x++) {
@@ -149,45 +133,21 @@ public class GameGrid extends Observable{
 				}
 			}
 		}
-		
+
 		// Diagonally left
-		for (int x = getSize()-1; x > 0; x--) {
+		for (int x = getSize() - 1; x > 0; x--) {
 			for (int y = 4; y < getSize(); y++) {
 				if (squares[x][y] != EMPTY) {
 					for (int i = 0; i < y; i++) {
-//						try {
-							numInRow = squares[Math.max(x-i, 0)][y - i] == player ? numInRow + 1 : 0;
-							// System.out.println("print " + numInRow + " ," +
-							// (x + i) + ":" + (y - i));
-							if (numInRow == INROW) {
-								return true;
-							}//						} catch (ArrayIndexOutOfBoundsException exception) {
-//							System.out.println(
-//									"print this is x:" + x + "\n this is i:" + i + " \n" + (x + i) + ":" + (y - i));
-//
-//						}
-
+						numInRow = squares[Math.max(x - i, 0)][y - i] == player ? numInRow + 1 : 0;
+						if (numInRow == INROW) {
+							return true;
+						}
 					}
 					numInRow = 0;
 				}
 			}
 		}
-
-		// Diagonally left
-//		for(int i=0; i<getSize(); i++) {
-//			for(int j=0; j<getSize(); j++) {
-//				numInRow = squares[j][j] == player ? numInRow+1 : 0;//g�r ett steg f�r l�ngt? (plockat bort numInRow = squares[j][j+i] tillf�lligt
-//				if(numInRow == INROW) {
-//					return true;
-//				}
-//			}
-//			numInRow = 0;
-//		}
-
 		return false;
-//	}
-
-	
-}
-
+	}
 }

@@ -23,29 +23,6 @@ public class GamePanel extends JPanel implements Observer {
 	private final int UNIT_SIZE = 20;
 	private GameGrid grid;
 
-	public static void main(String[] args) {
-		GameGrid testgrid = new GameGrid(5);
-		JPanel testpanel = new GamePanel(testgrid);
-		JFrame test = new JFrame();
-		JPanel test2 = new JPanel();
-		JButton connectButton = new JButton("Connect");
-		JButton newGameButton = new JButton("New Game");
-		JButton disconnectButton = new JButton("Disconnect");
-
-		SpringLayout layout = new SpringLayout();
-		testpanel.setLayout(layout);
-
-		test2.add(disconnectButton);
-		test2.add(connectButton);
-		test2.add(newGameButton);
-
-		test.setContentPane(test2);
-		test2.add(testpanel);
-		layout.putConstraint(SpringLayout.SOUTH, testpanel, 10, SpringLayout.NORTH, connectButton);
-		test.pack();
-		test.setVisible(true);
-	}
-
 	/**
 	 * The constructor
 	 * 
@@ -60,17 +37,6 @@ public class GamePanel extends JPanel implements Observer {
 		this.setPreferredSize(d);
 		this.setMaximumSize(d);
 		this.setBackground(Color.WHITE);
-		// this should possibly be in GomokuGUI?
-		// this.addMouseListener(new MouseAdapter(){
-		// public void mouseClicked(MouseEvent e){
-		// Point lala=e.getPoint();
-		// System.out.println(lala);
-		// int[] test=getGridPosition(lala.x,lala.y);
-		// int X=test[0];
-		// int Y=test[1];
-		// System.out.println(grid.move(X, Y, 1));
-		// }
-		// });
 	}
 
 	/**
@@ -91,10 +57,19 @@ public class GamePanel extends JPanel implements Observer {
 
 	}
 
+	/**
+	 * Executed whenever notified by observable
+	 * @param arg0 The observable
+	 * @param arg1 Object for any additional thingies
+     */
 	public void update(Observable arg0, Object arg1) {
 		this.repaint();
 	}
 
+	/**
+	 * Redraws the GameGrid visually
+	 * @param g The graphics object
+     */
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		drawgrid(g);
