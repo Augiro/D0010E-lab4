@@ -51,10 +51,8 @@ public class GamePanel extends JPanel implements Observer {
 	public int[] getGridPosition(int x, int y) {
 		int X = x / UNIT_SIZE;
 		int Y = y / UNIT_SIZE;
-		System.out.println(X + "," + Y);
 		int[] gridCoordinates = { X, Y };
 		return gridCoordinates;
-
 	}
 
 	/**
@@ -74,19 +72,16 @@ public class GamePanel extends JPanel implements Observer {
 		super.paintComponent(g);
 		drawgrid(g);
 		drawPlayer(g);
-
 	}
 
 	private void drawPlayer(Graphics g) {
 		for (int i = 0; i < grid.getSize(); i++) {
 			drawplayerColumm(g, i);
 		}
-
 	}
 
 	private void drawplayerColumm(Graphics g, int X_pos) {
 		for (int i = 0; i < grid.getSize(); i++) {
-//			System.out.print(grid.getLocation(X_pos, i)+" ");
 			if (grid.getLocation(X_pos, i) == grid.ME) {
 				g.setColor(Color.BLACK);
 				g.fillOval(X_pos * UNIT_SIZE, (i * UNIT_SIZE), UNIT_SIZE, UNIT_SIZE);

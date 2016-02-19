@@ -70,7 +70,6 @@ public class GameGrid extends Observable{
 				squares[i][j] = EMPTY;
 			}
 		}
-		System.out.println("Grid cleared.");
 		setChanged();
 		notifyObservers();
 	}
@@ -82,7 +81,7 @@ public class GameGrid extends Observable{
 	 * @return true if player has 5 in row, false otherwise
 	 */
 	public boolean isWinner(int player) {
-		if (getSize() < 5) {
+		if (getSize() < INROW) {
 			return false;
 		}
 
@@ -116,17 +115,9 @@ public class GameGrid extends Observable{
 			for (int x = 0; x < getSize() - 4; x++) {
 				if (squares[x][y] != EMPTY) {
 					for (int i = 0; i < x; i++) {
-						try {
-							numInRow = squares[Math.min(x + i, (getSize() - 4))][y - i] == player ? numInRow + 1 : 0;
-							// System.out.println("print " + numInRow + " ," +
-							// (x + i) + ":" + (y - i));
-							if (numInRow == INROW) {
-								return true;
-							}
-						} catch (ArrayIndexOutOfBoundsException exception) {
-							System.out.println(
-									"print this is x:" + x + "\n this is i:" + i + " \n" + (x + i) + ":" + (y - i));
-
+						numInRow = squares[Math.min(x + i, (getSize() - 4))][y - i] == player ? numInRow + 1 : 0;
+						if (numInRow == INROW) {
+							return true;
 						}
 					}
 					numInRow = 0;

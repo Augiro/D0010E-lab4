@@ -85,10 +85,9 @@ public class GomokuGUI implements Observer{
 		frame.pack();
 		
 		connectButton.addActionListener(new ActionListener(){
-			
 			public void actionPerformed(ActionEvent arg0) {
 				ConnectionWindow connectionwindow=new ConnectionWindow(c);
-			}	
+			}
 		});
 		disconnectButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
@@ -100,31 +99,21 @@ public class GomokuGUI implements Observer{
 				gamestate.newGame();
 			}
 		});
-		
-		
+
 		gamepanel.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
-				Point point =e.getPoint();
-				System.out.println(point);
-				int[] pos=gamepanel.getGridPosition(point.x,point.y);
-				int X=pos[0];
-				System.out.println(point.x);
-				System.out.println(point.y);
-				int Y=pos[1];
+				Point point = e.getPoint();
+				int[] pos = gamepanel.getGridPosition(point.x, point.y);
+				int X = pos[0];
+				int Y = pos[1];
 				gamestate.move(X, Y);
 			}
 		});
-		
 		connectButton.setEnabled(true);
 		newGameButton.setEnabled(false);
 		disconnectButton.setEnabled(false);
-		
-		
 		frame.setVisible(true);
-		
-
 	}
-
 
 	/**
 	 * Executed whenever notified by observables
@@ -132,7 +121,7 @@ public class GomokuGUI implements Observer{
 	 * @param arg1 Object for any additional thingies
      */
 	public void update(Observable arg0, Object arg1){
-//		 Update the buttons if the connection status has changed
+//		Update the buttons if the connection status has changed
 		if(arg0 == client){
 			if(client.getConnectionStatus() == GomokuClient.UNCONNECTED){
 				connectButton.setEnabled(true);
@@ -145,11 +134,10 @@ public class GomokuGUI implements Observer{
 			}
 		}
 		
-//		 Update the status text if the gamestate has changed
+//		Update the status text if the gamestate has changed
 		if(arg0 == gamestate){
 			messageLabel.setText(gamestate.getMessageString());
 		}
-		
 	}
 }
 
