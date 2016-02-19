@@ -7,9 +7,22 @@ import java.util.Observable;
  */
 
 public class GameGrid extends Observable{
+	/**
+	 * Square is empty
+	 */
 	public static final int EMPTY = 0;
+	/**
+	 * Square is filled by "me"
+	 */
 	public static final int ME = 1;
+	/**
+	 * Square is filled by opponent
+	 */
 	public static final int OTHER = 2;
+
+	/**
+	 * Number of objects in row required to win
+	 */
 	public static final int INROW = 5;
 	private int[][] squares;
 
