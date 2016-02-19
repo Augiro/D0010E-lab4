@@ -58,7 +58,7 @@ public class GomokuGUI implements Observer{
 		messageLabel=new JLabel("Welcome to Gomoku!");
 		
 		GameGrid grid=g.getGameGrid();
-		GamePanel testGamepanel=new GamePanel(grid);
+		GamePanel gamepanel=new GamePanel(grid);
 		
 		JFrame testframe=new JFrame();//fönstret
 		testframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -69,29 +69,35 @@ public class GomokuGUI implements Observer{
 		testpanel.add(newGameButton);
 		
 		testpanel.add(messageLabel);
-		testpanel.add(testGamepanel);
+		testpanel.add(gamepanel);
 		
 		
 		testframe.setContentPane(testpanel);
 		
 		// SpringLayout testing Starts
 		SpringLayout layout=new SpringLayout();
-		testframe.setLayout(layout);
+		testpanel.setLayout(layout);
 
 		layout.putConstraint(SpringLayout.WEST,connectButton,10,SpringLayout.EAST , disconnectButton);
 		layout.putConstraint(SpringLayout.WEST,newGameButton,10,SpringLayout.EAST , connectButton);
-		layout.putConstraint(SpringLayout.NORTH,newGameButton,10,SpringLayout.SOUTH , testGamepanel);
-		layout.putConstraint(SpringLayout.NORTH,connectButton,10,SpringLayout.SOUTH , testGamepanel);
-		layout.putConstraint(SpringLayout.NORTH,disconnectButton,10,SpringLayout.SOUTH , testGamepanel);
-		layout.putConstraint(SpringLayout.NORTH,messageLabel,10,SpringLayout.SOUTH , disconnectButton);
-		layout.putConstraint(SpringLayout.WEST,messageLabel,10,SpringLayout.WEST , disconnectButton);
 		
-		layout.putConstraint(SpringLayout.NORTH,testframe,10,SpringLayout.SOUTH , testGamepanel);
-		layout.putConstraint(SpringLayout.WEST,testframe,10,SpringLayout.EAST , testGamepanel);
+		layout.putConstraint(SpringLayout.NORTH,newGameButton,10,SpringLayout.SOUTH , gamepanel);
+		layout.putConstraint(SpringLayout.NORTH,connectButton,10,SpringLayout.SOUTH , gamepanel);
+		layout.putConstraint(SpringLayout.NORTH,disconnectButton,10,SpringLayout.SOUTH , gamepanel);
+//		layout.putConstraint(SpringLayout.NORTH , testpanel,100,SpringLayout.NORTH,newGameButton);
+//		layout.putConstraint(SpringLayout.NORTH , testpanel,100,SpringLayout.NORTH,connectButton);
+//		layout.putConstraint(SpringLayout.NORTH , testpanel,100,SpringLayout.NORTH,disconnectButton);
+		
+		layout.putConstraint(SpringLayout.NORTH,messageLabel,10,SpringLayout.SOUTH , disconnectButton);
+		
+		layout.putConstraint(SpringLayout.EAST,testpanel,10,SpringLayout.EAST , newGameButton);
+		layout.putConstraint(SpringLayout.SOUTH,testpanel,10,SpringLayout.SOUTH , messageLabel);
 		// SpringLayout testing Ends
 		
-		testframe.pack();
 		
+//		testframe.setSize(gamepanel.getPreferredSize());
+		
+		testframe.pack();
 		
 		connectButton.addActionListener(new ActionListener(){
 			
@@ -111,11 +117,11 @@ public class GomokuGUI implements Observer{
 		});
 		
 		
-		testGamepanel.addMouseListener(new MouseAdapter(){
+		gamepanel.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
 				Point lala=e.getPoint();
 				System.out.println(lala);
-				int[] test=testGamepanel.getGridPosition(lala.x,lala.y);
+				int[] test=gamepanel.getGridPosition(lala.x,lala.y);
 				int X=test[0];
 				System.out.println(lala.x);
 				System.out.println(lala.y);
@@ -124,11 +130,14 @@ public class GomokuGUI implements Observer{
 			}
 		});
 		
-		testframe.setVisible(true);
-		
 		connectButton.setEnabled(true);
 		newGameButton.setEnabled(false);
 		disconnectButton.setEnabled(false);
+		
+		
+		testframe.setVisible(true);
+		
+
 	}
 	
 	

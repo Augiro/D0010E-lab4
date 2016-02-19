@@ -58,6 +58,7 @@ public class GamePanel extends JPanel implements Observer {
 		Dimension d = new Dimension(grid.getSize() * UNIT_SIZE + 1, grid.getSize() * UNIT_SIZE + 1);
 		this.setMinimumSize(d);
 		this.setPreferredSize(d);
+		this.setMaximumSize(d);
 		this.setBackground(Color.WHITE);
 		// this should possibly be in GomokuGUI?
 		// this.addMouseListener(new MouseAdapter(){
