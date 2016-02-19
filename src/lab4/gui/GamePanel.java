@@ -3,10 +3,6 @@ package lab4.gui;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.Point;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -73,36 +69,47 @@ public class GamePanel extends JPanel implements Observer {
 		drawgrid(g);
 		drawPlayer(g);
 	}
+	/**
+	 * Draws players
+	 * @param g The graphics object
+	 */
 
 	private void drawPlayer(Graphics g) {
-		for (int i = 0; i < grid.getSize(); i++) {
-			drawplayerColumm(g, i);
+		for (int columm_nr = 0; columm_nr < grid.getSize(); columm_nr++) {//draws players for each columm on grid
+			drawplayerColumm(g, columm_nr);
 		}
 	}
 
-	private void drawplayerColumm(Graphics g, int X_pos) {
-		for (int i = 0; i < grid.getSize(); i++) {
-			if (grid.getLocation(X_pos, i) == grid.ME) {
+	private void drawplayerColumm(Graphics g, int columm) {
+		for (int row = 0; row < grid.getSize(); row++) {
+			//checks which player occupies the square and draws circle in corresponding color
+			//otherwhise "empties" square
+			if (grid.getLocation(columm, row) == grid.ME) {
 				g.setColor(Color.BLACK);
-				g.fillOval(X_pos * UNIT_SIZE, (i * UNIT_SIZE), UNIT_SIZE, UNIT_SIZE);
-			} else if ((grid.getLocation(X_pos, i) == grid.OTHER)) {
+				g.fillOval((columm * UNIT_SIZE), (row * UNIT_SIZE), UNIT_SIZE, UNIT_SIZE);
+			} else if ((grid.getLocation(columm, row) == grid.OTHER)) {
 				g.setColor(Color.RED);
-				g.fillOval(X_pos * UNIT_SIZE, (i * UNIT_SIZE), UNIT_SIZE, UNIT_SIZE);
+				g.fillOval((columm * UNIT_SIZE), (row * UNIT_SIZE), UNIT_SIZE, UNIT_SIZE);
 			} else {
 				g.setColor(Color.WHITE);
-				g.fillOval(X_pos * UNIT_SIZE, (i * UNIT_SIZE), UNIT_SIZE, UNIT_SIZE);
+				g.fillOval((columm * UNIT_SIZE), (row * UNIT_SIZE), UNIT_SIZE, UNIT_SIZE);
 			}
 		}
 	}
+	
+	/**
+	 * Draws the grid
+	 * @param g The graphics object
+	 */
 
 	private void drawgrid(Graphics g) {
 		for (int columm_nr = 0; columm_nr < grid.getSize(); columm_nr++) {
-			drawverticalColumm(g, (columm_nr * UNIT_SIZE));
+			drawVerticalColumm(g, (columm_nr * UNIT_SIZE));
 		}
 
 	}
 
-	private void drawverticalColumm(Graphics g, int X_pos) {
+	private void drawVerticalColumm(Graphics g, int X_pos) {
 		for (int rect_nr = 0; rect_nr < grid.getSize(); rect_nr++) {
 			g.drawRect(X_pos, (rect_nr * UNIT_SIZE), UNIT_SIZE, UNIT_SIZE);
 		}

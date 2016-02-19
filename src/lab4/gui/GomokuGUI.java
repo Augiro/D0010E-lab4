@@ -2,8 +2,6 @@ package lab4.gui;
 import java.util.Observable;
 import java.util.Observer;
 
-import javax.swing.Box;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.*;
 import javax.swing.SpringLayout;
@@ -54,9 +52,11 @@ public class GomokuGUI implements Observer{
 		GameGrid grid=g.getGameGrid();
 		GamePanel gamepanel=new GamePanel(grid);
 		
-		JFrame frame=new JFrame();//f�nstret
+		JFrame frame=new JFrame();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		JPanel panel=new JPanel();//pane d�r allt s�tts in
+		JPanel panel=new JPanel();
+		
+		// adds components
 		
 		panel.add(disconnectButton);
 		panel.add(connectButton);
@@ -70,6 +70,8 @@ public class GomokuGUI implements Observer{
 		
 		SpringLayout layout=new SpringLayout();
 		panel.setLayout(layout);
+		
+		// Sets layout
 
 		layout.putConstraint(SpringLayout.WEST,connectButton,10,SpringLayout.EAST , disconnectButton);
 		layout.putConstraint(SpringLayout.WEST,newGameButton,10,SpringLayout.EAST , connectButton);
@@ -83,6 +85,8 @@ public class GomokuGUI implements Observer{
 		layout.putConstraint(SpringLayout.SOUTH,panel,10,SpringLayout.SOUTH , messageLabel);
 
 		frame.pack();
+		
+		// adds anonymous actionlisteners to the buttons
 		
 		connectButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
@@ -99,6 +103,8 @@ public class GomokuGUI implements Observer{
 				gamestate.newGame();
 			}
 		});
+		
+		// adds anonymous mouselistener
 
 		gamepanel.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){

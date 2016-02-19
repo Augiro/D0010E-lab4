@@ -115,6 +115,7 @@ public class GameGrid extends Observable{
 			for (int x = 0; x < getSize() - 4; x++) {
 				if (squares[x][y] != EMPTY) {
 					for (int i = 0; i < x; i++) {
+						// Min and max methods used to keep array index within bounds
 						numInRow = squares[Math.min(x + i, (getSize() - 4))][Math.max((y - i), 0)] == player ? numInRow + 1 : 0;
 						if (numInRow == INROW) {
 							return true;
