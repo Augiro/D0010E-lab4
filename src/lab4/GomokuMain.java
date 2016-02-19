@@ -12,12 +12,9 @@ import lab4.client.GomokuClient;
              GomokuGUI gui = new GomokuGUI(gamestate, client);
          } else{
              int port = Integer.parseInt(args[0]);
-             GomokuClient testclient=new GomokuClient(port);
-             GomokuClient testclient2=new GomokuClient(port-1);
-             GomokuGameState gamestate=new GomokuGameState(testclient);
-             GomokuGameState gamestate2=new GomokuGameState(testclient2);
-             GomokuGUI gu1=new GomokuGUI(gamestate,testclient);
-             GomokuGUI gu2=new GomokuGUI(gamestate2,testclient2);
+             GomokuClient client=new GomokuClient(port);
+             GomokuGameState gamestate=new GomokuGameState(client);
+             GomokuGUI gu1=new GomokuGUI(gamestate,client);
          }
      }
  }
