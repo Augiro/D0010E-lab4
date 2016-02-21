@@ -123,30 +123,40 @@ public class GameGrid extends Observable{
 		}
 
 
-		// Diagonally right
-		for (int y = 4; y < getSize(); y++) {
+		// Diagonally right upward, starts from the lowest row possible to get a win, then checks row for row
+		for (int y = INROW-1; y < getSize(); y++) {
 			for (int x = 0; x < getSize() - 4; x++) {
 				if (squares[x][y] != EMPTY) {
-					for (int i = 0; i < x; i++) {
-						// Min and max methods used to keep array index within bounds
-						numInRow = squares[Math.min(x + i, (getSize() - 4))][Math.max((y - i), 0)] == player ? numInRow + 1 : 0;
-						if (numInRow == INROW) {
-							return true;
+					for (int i = 0; i <= y; i++) {
+						// checks so it tries to access a unreachable square and breaks, otherwise continues
+						if ((x + i) > (getSize() - 1)) {
+							break;
+						} else {
+							numInRow = squares[x + i][y - i] == player
+									? numInRow + 1 : 0;
+							if (numInRow == INROW) {
+								return true;
+							}
 						}
 					}
 					numInRow = 0;
+
 				}
 			}
 		}
 
-		// Diagonally left
-		for (int x = getSize() - 1; x > 0; x--) {
-			for (int y = 4; y < getSize(); y++) {
+		// Diagonally left upward, mirrored form of Diagonally right
+		for (int y = INROW - 1; y < getSize(); y++) {
+			for (int x = getSize() - 1; x > INROW - 1; x--) {
 				if (squares[x][y] != EMPTY) {
-					for (int i = 0; i < y; i++) {
-						numInRow = squares[Math.max(x - i, 0)][y - i] == player ? numInRow + 1 : 0;
-						if (numInRow == INROW) {
-							return true;
+					for (int i = 0; i <= y; i++) {
+						if ((x - i) < 0) {
+							break;
+						} else {
+							numInRow = squares[x - i][y - i] == player ? numInRow + 1 : 0;
+							if (numInRow == INROW) {
+								return true;
+							}
 						}
 					}
 					numInRow = 0;
